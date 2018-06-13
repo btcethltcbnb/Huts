@@ -17,18 +17,13 @@ contract CreatingaHut {
     ///  The main hut struct. Every hut created in the dApp is represented by a copy
     ///  of this structure.
     struct Hut {
-        // The Hut's deed number is packed into these 256-bits, the format is 
-        // as represented on the original paper form deed! A hut's deed number never changes.
-        uint256 deedNumber;
+        // The Hut's stand number is packed into these 256-bits, the format is 
+        // as represented on the original paper form deed! A hut's stand number never changes.
+        uint256 standNumber;
 
-        // The timestamp from the block when this cat came into existence.
+        // The timestamp from the block when this hut came into existence on the blockchain.
         uint64 constructionTime;
-
-      
-       
-        // The stand number input is derived from the original paper deed
-        uint32 standNumber;
-        
+   
     }
 
    
@@ -52,10 +47,6 @@ contract CreatingaHut {
     ///  at any time. A zero value means no approval is outstanding.
     mapping (uint256 => address) public hutIndexToApproved;
 
-
-    ///  The address of the ClockAuction contract that handles sales of huts. 
-    SaleSellingaHut public saleAuction;
-
    
 
     ///  Assigns ownership of a specific Hut to an address.
@@ -77,7 +68,6 @@ contract CreatingaHut {
     /// @param _standNumber Also derived from the original title deed.
     /// @param _owner The inital owner of this cat, must be non-zero.
     function _createHut(
-        uint256 _deedNumber,
         uint256 _standNumber,
         address _owner
     )
@@ -87,7 +77,6 @@ contract CreatingaHut {
 
         Kitty memory _kitty = Kitty({
             constructionTime: uint64(now),
-            deedNumber: uint256(_deedNumber),
             standNumber: uint256(_standNumber),
         });
         uint256 newhutId = huts.push(_hut) - 1;
@@ -96,7 +85,6 @@ contract CreatingaHut {
         Birth(
             _owner,
             newhutId,
-            uint256(_hut.deedNumber),
             uint256(_hut.standNumber),
         );
 
