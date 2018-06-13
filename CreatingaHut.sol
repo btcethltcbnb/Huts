@@ -1,5 +1,5 @@
 /// @title Base contract for creating a hut. Holds all common structs, events and base variables.
-
+/// hut symbolizes digital deed.
 
 contract CreatingaHut {
 
