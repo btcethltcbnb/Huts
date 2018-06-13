@@ -60,11 +60,10 @@ contract CreatingaHut {
         Transfer(_from, _to, _tokenId);
     }
 
-    ///  An public method that creates a new kitty and stores it. This
+    ///  An public method that creates a new hut and stores it. This
     ///  method doesn't do any checking and should only be called when the
     ///  input data is known to be valid. Will generate both a Construction event
-    ///  and a Transfer event.
-    /// @param _deedNumber Derived from original copy of title deed.
+    ///  and a Transfer event. Function only public for demo reasons.
     /// @param _standNumber Also derived from the original title deed.
     /// @param _owner The inital owner of this cat, must be non-zero.
     function _createHut(
