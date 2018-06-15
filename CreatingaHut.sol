@@ -103,7 +103,8 @@ contract CreatingaHut {
         Birth(
             _owner,
             newhutId,
-            _hut.standNumber
+            _hut.standNumber,
+            _hut.circumference
         );
 
         // This will assign ownership, and also emit the Transfer event as
