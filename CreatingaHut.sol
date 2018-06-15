@@ -1,3 +1,8 @@
+pragma solidity ^0.4.24;
+
+import "./ERC721Basic.sol";
+
+
 /// @title Base contract for creating a hut. Holds all common structs, events and base variables.
 /// hut symbolizes digital deed.
 
