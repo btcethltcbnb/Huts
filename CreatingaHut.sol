@@ -28,7 +28,9 @@ contract CreatingaHut {
 
         // The timestamp from the block when this hut came into existence on the blockchain.
         uint64 constructionTime;
-   
+        
+        //Measurement of the hut
+        string circumference;
     }
 
    
@@ -82,7 +84,8 @@ contract CreatingaHut {
     /// @param _owner The inital owner of this hut, must be non-zero.
     function _createHut(
         uint256 _standNumber,
-        address _owner
+        address _owner,
+        string  _circumference
     )
         public
         returns (uint)
@@ -92,6 +95,7 @@ contract CreatingaHut {
         Hut memory _hut = hut({
             constructionTime: uint64(now),
             standNumber: uint256(_standNumber),
+            circumference: string(_circumference)
         });
         uint256 newhutId = huts.push(_hut) - 1;
 
