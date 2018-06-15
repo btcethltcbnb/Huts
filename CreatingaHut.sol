@@ -51,11 +51,20 @@ contract CreatingaHut {
 
     ///  Assigns ownership of a specific Hut to an address.
     function _transfer(address _from, address _to, uint256 _tokenId) internal {
-        
+        // Since the number of huts is capped at 2^32 due to uint256
+        // there is no overflow to this, at least in this century
+        ownershipTokenCount[_to]++;
         // transfer ownership
         hutIndexToOwner[_tokenId] = _to;
-        
+        //When creating a new hut _from is 0x0, but we cant account this address.
+        if (_from != address(0)) {
+            ownershipTokenCount[_from]--;
+            // Once the hut ownership is transfered, clear any previously approved 
+            // ownership exchange.
+            delete hutIndexToApproved [_tokenId];
         }
+       
+        
         // Emit the transfer event.
         Transfer(_from, _to, _tokenId);
     }
@@ -65,7 +74,7 @@ contract CreatingaHut {
     ///  input data is known to be valid. Will generate both a Construction event
     ///  and a Transfer event. Function only public for demo reasons.
     /// @param _standNumber Also derived from the original title deed.
-    /// @param _owner The inital owner of this cat, must be non-zero.
+    /// @param _owner The inital owner of this hut, must be non-zero.
     function _createHut(
         uint256 _standNumber,
         address _owner
