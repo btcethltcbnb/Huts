@@ -85,8 +85,9 @@ contract CreatingaHut {
         address _owner
     )
         public
-        returns (uint);
-   
+        returns (uint)
+        
+    {}
 
         Hut memory _hut = hut({
             constructionTime: uint64(now),
