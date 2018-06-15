@@ -11,7 +11,7 @@ contract CreatingaHut {
     /*** EVENTS ***/
 
     ///  The Construction event is fired whenever a new hut comes into existence on the blockchain.
-    event Construction(address owner, uint256 hutId, uint256 deedNumber, uint256 standNumber);
+    event Construction(address owner, uint256 hutId, uint256 standNumber);
 
     ///  Transfer event as defined in current draft of ERC721. Emitted every time a hut
     ///  ownership is assigned.
@@ -88,7 +88,7 @@ contract CreatingaHut {
         returns (uint);
    
 
-        Kitty memory _kitty = Kitty({
+        Hut memory _hut = hut({
             constructionTime: uint64(now),
             standNumber: uint256(_standNumber),
         });
