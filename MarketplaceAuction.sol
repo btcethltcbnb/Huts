@@ -1,7 +1,8 @@
 // @title Marketplace Auction
 /// Contains models, variables, and internal methods for the auction.
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
-
+/// To reduce on-chain activity, instead of declining and accepting offers from the 
+/// bids, a _seller sets a range price for their hut and the contract auctions it.
 contract MarketplaceAuction {
 
     // Represents an auction on an Non Fungible Token
@@ -116,6 +117,7 @@ contract MarketplaceAuction {
         _removeAuction(_tokenId);
 
         // Transfer proceeds to seller (if there are any!)
+        
         if (price > 0) {
             // Calculate the auctioneer's cut.
             // (NOTE: _computeCut() is guaranteed to return a
