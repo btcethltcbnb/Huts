@@ -1,10 +1,10 @@
-// @title Auction Core
-/// @dev Contains models, variables, and internal methods for the auction.
+// @title Marketplace Auction
+/// Contains models, variables, and internal methods for the auction.
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
 
-contract ClockAuctionBase {
+contract MarketplaceAuction {
 
-    // Represents an auction on an NFT
+    // Represents an auction on an Non Fungible Token
     struct Auction {
         // Current owner of NFT
         address seller;
@@ -33,14 +33,14 @@ contract ClockAuctionBase {
     event AuctionSuccessful(uint256 tokenId, uint256 totalPrice, address winner);
     event AuctionCancelled(uint256 tokenId);
 
-    /// @dev Returns true if the claimant owns the token.
-    /// @param _claimant - Address claiming to own the token.
+    /// Returns true if the claimant owns the token.
+    /// @param _claimant - Address claiming to own the token which corresponds to hut ownership.
     /// @param _tokenId - ID of token whose ownership to verify.
     function _owns(address _claimant, uint256 _tokenId) internal view returns (bool) {
         return (nonFungibleContract.ownerOf(_tokenId) == _claimant);
     }
 
-    /// @dev Escrows the NFT, assigning ownership to this contract.
+    /// Escrows the NFT, assigning ownership to this contract.
     /// Throws if the escrow fails.
     /// @param _owner - Current owner address of token to escrow.
     /// @param _tokenId - ID of token whose approval to verify.
@@ -64,7 +64,7 @@ contract ClockAuctionBase {
     /// @param _auction Auction to add.
     function _addAuction(uint256 _tokenId, Auction _auction) internal {
         // Require that all auctions have a duration of
-        // at least one minute. (Keeps our math from getting hairy!)
+        // at least one minute or whatever holding period imposed by the chief issuing huts.
         require(_auction.duration >= 1 minutes);
 
         tokenIdToAuction[_tokenId] = _auction;
@@ -77,14 +77,18 @@ contract ClockAuctionBase {
         );
     }
 
-    /// @dev Cancels an auction unconditionally.
+    /// Cancels an auction unconditionally.
+    /// Today, once you sign an agreement to sell a hut, its costly to
+    /// reverse the intention due to previously agreed broker commissions.
+    /// Here we give that power back to sellers at the cost of gas fee,
+    /// and not 5% of the hut's worth.
     function _cancelAuction(uint256 _tokenId, address _seller) internal {
         _removeAuction(_tokenId);
         _transfer(_seller, _tokenId);
         AuctionCancelled(_tokenId);
     }
 
-    /// @dev Computes the price and transfers winnings.
+    /// Contract computes the price and transfers winnings.
     /// Does NOT transfer ownership of token.
     function _bid(uint256 _tokenId, uint256 _bidAmount)
         internal
