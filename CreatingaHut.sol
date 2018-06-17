@@ -29,7 +29,9 @@ contract CreatingaHut {
         // The timestamp from the block when this hut came into existence on the blockchain.
         uint64 constructionTime;
         
-        //Measurement of the hut
+        // NOTE: This is the circumference of the full space allocated to the hut 
+        // according to the paper deed and not the measurement of any property held inside 
+        // the hut.
         string circumference;
     }
 
