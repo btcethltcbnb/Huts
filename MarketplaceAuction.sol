@@ -1,3 +1,6 @@
+pragma solidity ^0.4.24;
+
+
 /// @title Marketplace Auction
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
 /// Contains models, variables, and internal methods for the auction.
