@@ -1,6 +1,6 @@
-// @title Marketplace Auction
-/// Contains models, variables, and internal methods for the auction.
+/// @title Marketplace Auction
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
+/// Contains models, variables, and internal methods for the auction.
 /// To reduce on-chain activity, instead of declining and accepting offers from the 
 /// bids, a _seller sets a range price for their hut and the contract auctions it.
 contract MarketplaceAuction {
@@ -119,7 +119,7 @@ contract MarketplaceAuction {
         // Transfer proceeds to seller (if there are any!)
         
         if (price > 0) {
-            // Calculate the auctioneer's cut.
+            // Calculate the auctioneer's cut (commission).
             // (NOTE: _computeCut() is guaranteed to return a
             // value <= price, so this subtraction can't go negative.)
             uint256 auctioneerCut = _computeCut(price);
@@ -153,7 +153,7 @@ contract MarketplaceAuction {
         return price;
     }
 
-    /// @dev Removes an auction from the list of open auctions.
+    /// Removing an auction from the list of huts on auction.
     /// @param _tokenId - ID of NFT on auction.
     function _removeAuction(uint256 _tokenId) internal {
         delete tokenIdToAuction[_tokenId];
