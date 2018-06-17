@@ -3,6 +3,7 @@
 /// Contains models, variables, and internal methods for the auction.
 /// To reduce on-chain activity, instead of declining and accepting offers from the 
 /// bids, a _seller sets a range price for their hut and the contract auctions it.
+
 contract MarketplaceAuction {
 
     // Represents an auction on an Non Fungible Token
@@ -159,13 +160,13 @@ contract MarketplaceAuction {
         delete tokenIdToAuction[_tokenId];
     }
 
-    /// @dev Returns true if the NFT is on auction.
+    /// Returns true if the NFT is on auction.
     /// @param _auction - Auction to check.
     function _isOnAuction(Auction storage _auction) internal view returns (bool) {
         return (_auction.startedAt > 0);
     }
 
-    /// @dev Returns current price of an NFT on auction. Broken into two
+    ///  Returns current price of an NFT on auction. Broken into two
     ///  functions (this one, that computes the duration from the auction
     ///  structure, and the other that does the price computation) so we
     ///  can easily test that the price computation works correctly.
@@ -191,10 +192,9 @@ contract MarketplaceAuction {
         );
     }
 
-    /// @dev Computes the current price of an auction. Factored out
+    ///  Computes the current price of an auction. Factored out
     ///  from _currentPrice so we can run extensive unit tests.
-    ///  When testing, make this function public and turn on
-    ///  `Current price computation` test suite.
+
     function _computeCurrentPrice(
         uint256 _startingPrice,
         uint256 _endingPrice,
@@ -205,11 +205,7 @@ contract MarketplaceAuction {
         pure
         returns (uint256)
     {
-        // NOTE: We don't use SafeMath (or similar) in this function because
-        //  all of our public functions carefully cap the maximum values for
-        //  time (at 64-bits) and currency (at 128-bits). _duration is
-        //  also known to be non-zero (see the require() statement in
-        //  _addAuction())
+       
         if (_secondsPassed >= _duration) {
             // We've reached the end of the dynamic pricing portion
             // of the auction, just return the end price.
