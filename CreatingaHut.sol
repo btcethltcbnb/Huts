@@ -33,6 +33,8 @@ contract CreatingaHut {
         // according to the paper deed and not the measurement of any property held inside 
         // the hut.
         string circumference;
+        // The country from which the standNumber originates from.
+        string coutry;
     }
 
    
@@ -84,10 +86,12 @@ contract CreatingaHut {
     ///  and a Transfer event. Function only public for demo reasons.
     /// @param _standNumber Also derived from the original title deed.
     /// @param _owner The inital owner of this hut, must be non-zero.
+    /// @param _circumference The whole measurement of the hut, not neccessarily the property inside.
     function _createHut(
         uint256 _standNumber,
         address _owner,
-        string  _circumference
+        string  _circumference,
+        string _country
     )
         public
         returns (uint)
@@ -97,16 +101,18 @@ contract CreatingaHut {
         Hut memory _hut = hut({
             constructionTime: uint64(now),
             standNumber: uint256(_standNumber),
-            circumference: string(_circumference)
+            circumference: string(_circumference),
+            country: string(_country)
         });
         uint256 newhutId = huts.push(_hut) - 1;
 
-        // emit the birth event
+        // emit the Construction event
         Birth(
             _owner,
             newhutId,
             _hut.standNumber,
-            _hut.circumference
+            _hut.circumference,
+            _hut.country
         );
 
         // This will assign ownership, and also emit the Transfer event as
