@@ -110,7 +110,7 @@ contract CreatingaHut {
         Birth(
             _owner,
             newhutId,
-            _hut.standNumber,
+            uint256(_hut.standNumber),
             _hut.circumference,
             _hut.country
         );
