@@ -1,23 +1,24 @@
 pragma solidity ^0.4.24;
 
+ /// @title HutOwnersip, the facet of the dApp that manages ownership, ERC-721 compliant.
+ 
     import "./HutRegistry.sol";
     import "./ERC721Basic.sol";
 
-    /// @title HutOwnersip, the facet of the dApp that manages ownership, ERC-721 compliant.
     contract HutOwnership  {
 
     /// Name and symbol of the non fungible token, as defined in ERC721.
     string public name = "MarsTitleDeed";
     string public symbol = "MTD";
 
-     // The contract that will return hut metadata
+    // The contract that will return hut metadata
     ERC721Metadata public erc721Metadata;
 
     // bool public implementsERC721 = true;
    function supportsInterface(bytes4 _interfaceID) external view returns (bool)
     {
-        // DEBUG ONLY
-        //require((InterfaceSignature_ERC165 == 0x01ffc9a7) && (InterfaceSignature_ERC721 == 0x9a20483d));
+    // DEBUG ONLY
+    //require((InterfaceSignature_ERC165 == 0x01ffc9a7) && (InterfaceSignature_ERC721 == 0x9a20483d));
 
         return ((_interfaceID == InterfaceSignature_ERC165) || (_interfaceID == InterfaceSignature_ERC721));
     }
