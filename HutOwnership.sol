@@ -1,22 +1,33 @@
 pragma solidity ^0.4.24;
 
-import "./HutRegistry.sol";
-import "./ERC721Basic.sol";
+    import "./HutRegistry.sol";
+    import "./ERC721Basic.sol";
 
-/// @title HutOwnersip, the facet of the dApp that manages ownership, ERC-721 compliant.
-contract HutOwnership  {
+    /// @title HutOwnersip, the facet of the dApp that manages ownership, ERC-721 compliant.
+    contract HutOwnership  {
 
     /// Name and symbol of the non fungible token, as defined in ERC721.
     string public name = "MarsTitleDeed";
     string public symbol = "MTD";
 
+     // The contract that will return hut metadata
+    ERC721Metadata public erc721Metadata;
+
     // bool public implementsERC721 = true;
-    //
-    function implementsERC721() public pure returns (bool)
+   function supportsInterface(bytes4 _interfaceID) external view returns (bool)
     {
-        return true;
+        // DEBUG ONLY
+        //require((InterfaceSignature_ERC165 == 0x01ffc9a7) && (InterfaceSignature_ERC721 == 0x9a20483d));
+
+        return ((_interfaceID == InterfaceSignature_ERC165) || (_interfaceID == InterfaceSignature_ERC721));
     }
     
+    /// @dev Set the address of the sibling contract that tracks metadata.
+    ///  Only controled by the address deploying the conytract.
+    function setMetadataAddress(address _contractAddress) public onlyOwner {
+        erc721Metadata = ERC721Metadata(_contractAddress);
+        }
+        
     // Internal utility functions: These functions all assume that their input arguments
     // are valid. We leave it to public methods to sanitize their inputs and follow
     // the required logic.
@@ -174,5 +185,17 @@ contract HutOwnership  {
             }
         }
         revert();
+    }
+    
+    ///  Returns a URI pointing to a metadata package for this token conforming to
+    ///  ERC-721 (https://github.com/ethereum/EIPs/issues/721)
+    /// @param _tokenId The ID number of the Kitty whose metadata should be returned.
+    function tokenMetadata(uint256 _tokenId, string _preferredTransport) external view returns (string infoUrl) {
+        require(erc721Metadata != address(0));
+        bytes32[4] memory buffer;
+        uint256 count;
+        (buffer, count) = erc721Metadata.getMetadata(_tokenId, _preferredTransport);
+
+        return _toString(buffer, count);
     }
 }
