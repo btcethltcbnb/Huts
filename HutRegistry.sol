@@ -58,7 +58,9 @@ contract CreatingaHut {
     ///  at any time. A zero value means no approval is outstanding.
     mapping (uint256 => address) public hutIndexToApproved;
 
-   
+    /// The contract owner can change the base URL, in case it becomes necessary. It is needed for Metadata.
+    /// and will define information about properties kept inside huts.
+   string public url = "http://example.com/";
 
     ///  Assigns ownership of a specific Hut to an address.
     function _transfer(address _from, address _to, uint256 _tokenId) internal {
