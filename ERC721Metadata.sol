@@ -15,11 +15,9 @@ interface ERC721Metadata {
     function name() public pure returns (string _name);
 
     /// @notice An abbreviated name for deeds managed by this contract
-    /// @dev Wallets and exchanges MAY display this to the end user.
     function symbol() public pure returns (string _symbol);
 
-    /// @notice A distinct name for a deed managed by this contract
-    /// @dev Wallets and exchanges MAY display this to the end user.
+    /// @notice A distinct name for a deed managed by this contract.
     function deedName(uint256 _deedId) public pure returns (string _deedName);
 
     /// @notice A distinct URI (RFC 3986) for a given token.
@@ -29,14 +27,14 @@ interface ERC721Metadata {
     ///  * The URL points to a valid JSON file format (ECMA-404 2nd ed.)
     ///  * The JSON base element is an object
     ///  then these names of the base element SHALL have special meaning:
-    ///  * "name": A string identifying the item to which `_deedId` grants
+    ///  * "name": A string identifying the item to which `_hutId` grants
     ///    ownership
-    ///  * "description": A string detailing the item to which `_deedId` grants
+    ///  * "description": A string detailing the item to which `_hutId` grants
     ///    ownership
     ///  * "image": A URI pointing to a file of image/* mime type representing
-    ///    the item to which `_deedId` grants ownership
+    ///    the item to which `_hutId` grants ownership
     ///  Wallets and exchanges MAY display this to the end user.
     ///  Consider making any images at a width between 320 and 1080 pixels and
     ///  aspect ratio between 1.91:1 and 4:5 inclusive.
-    function deedUri(uint256 _deedId) external view returns (string _deedUri);
+    function hutUri(uint256 _hutId) external view returns (string _hutUri);
 }
