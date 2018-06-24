@@ -1,19 +1,42 @@
-contract ERC721Metadata {
-    /// Given a token Id, returns a byte array that is supposed to be converted into string.
-    function getMetadata(uint256 _tokenId, string) public view returns (bytes32[4] buffer, uint256 count) {
-        if (_tokenId == 1) {
-            buffer[0] = "Hello World! :D";
-            count = 15;
-        } else if (_tokenId == 2) {
-            buffer[0] = "I would definitely choose a medi";
-            buffer[1] = "um length string.";
-            count = 49;
-        } else if (_tokenId == 3) {
-            buffer[0] = "Lorem ipsum dolor sit amet, mi e";
-            buffer[1] = "st accumsan dapibus augue lorem,";
-            buffer[2] = " tristique vestibulum id, libero";
-            buffer[3] = " suscipit varius sapien aliquam.";
-            count = 128;
-        }
-    }
+pragma solidity ^0.4.24;
+
+/// @title Metadata extension to ERC-721 interface)
+
+interface ERC721Metadata {
+
+    /// @dev ERC-165 (draft) interface signature for ERC721
+    // bytes4 internal constant INTERFACE_SIGNATURE_ERC721Metadata = // 0x2a786f11
+    //     bytes4(keccak256('name()')) ^
+    //     bytes4(keccak256('symbol()')) ^
+    //     bytes4(keccak256('hutUri(uint256)'));
+
+    ///  A descriptive name for a collection of huts managed by this
+    ///  contract
+    function name() public pure returns (string _name);
+
+    /// @notice An abbreviated name for deeds managed by this contract
+    /// @dev Wallets and exchanges MAY display this to the end user.
+    function symbol() public pure returns (string _symbol);
+
+    /// @notice A distinct name for a deed managed by this contract
+    /// @dev Wallets and exchanges MAY display this to the end user.
+    function deedName(uint256 _deedId) public pure returns (string _deedName);
+
+    /// @notice A distinct URI (RFC 3986) for a given token.
+    /// @dev If:
+    ///  * The URI is a URL
+    ///  * The URL is accessible
+    ///  * The URL points to a valid JSON file format (ECMA-404 2nd ed.)
+    ///  * The JSON base element is an object
+    ///  then these names of the base element SHALL have special meaning:
+    ///  * "name": A string identifying the item to which `_deedId` grants
+    ///    ownership
+    ///  * "description": A string detailing the item to which `_deedId` grants
+    ///    ownership
+    ///  * "image": A URI pointing to a file of image/* mime type representing
+    ///    the item to which `_deedId` grants ownership
+    ///  Wallets and exchanges MAY display this to the end user.
+    ///  Consider making any images at a width between 320 and 1080 pixels and
+    ///  aspect ratio between 1.91:1 and 4:5 inclusive.
+    function deedUri(uint256 _deedId) external view returns (string _deedUri);
 }
