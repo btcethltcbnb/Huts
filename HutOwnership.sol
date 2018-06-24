@@ -236,6 +236,8 @@ pragma solidity ^0.4.24;
 
     /// @notice Returns a URI pointing to a metadata package for this token conforming to
     ///  ERC-721 (https://github.com/ethereum/EIPs/issues/721)
+    ///  In our case this will be info such as description of the property inside the hut
+    ///  as well as measurements of various amenities inside the hut.
     /// @param _tokenId The ID number of the Kitty whose metadata should be returned.
     function tokenMetadata(uint256 _tokenId, string _preferredTransport) external view returns (string infoUrl) {
         require(erc721Metadata != address(0));
