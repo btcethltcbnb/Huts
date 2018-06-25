@@ -14,11 +14,8 @@ interface ERC721Metadata {
     ///  contract
     function name() public pure returns (string _name);
 
-    /// @notice An abbreviated name for deeds managed by this contract
+    /// @notice An abbreviated name for huts managed by this contract
     function symbol() public pure returns (string _symbol);
-
-    /// @notice A distinct name for a deed managed by this contract.
-    function deedName(uint256 _deedId) public pure returns (string _deedName);
 
     /// @notice A distinct URI (RFC 3986) for a given token.
     /// @dev If:
