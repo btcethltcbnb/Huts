@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
  /// @title HutOwnersip, the facet of the dApp that manages ownership, ERC-721 compliant.
  
- import  "./ownable.sol";
+ import  "./Ownable.sol";
  
     contract HutOwnership is HutRegistry, ERC721 {
 
