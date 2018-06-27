@@ -7,7 +7,7 @@ import "./ERC165.sol";
  /// @title ERC721 Non-Fungible Token Standard basic interface
  /// See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
 
-contract ERC721Basic {
+contract ERC721 {
   event Transfer(
     address indexed _from,
     address indexed _to,
