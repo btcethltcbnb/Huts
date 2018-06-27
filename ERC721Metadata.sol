@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 /// @title Metadata extension to ERC-721 interface)
 
-interface ERC721Metadata {
+contract ERC721Metadata {
 
     /// @dev ERC-165 (draft) interface signature for ERC721
     // bytes4 internal constant INTERFACE_SIGNATURE_ERC721Metadata = // 0x2a786f11
