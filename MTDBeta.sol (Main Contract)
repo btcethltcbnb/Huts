@@ -1,5 +1,18 @@
 pragma solidity ^0.4.24;
 
+/// The process of buying and selling residential real estate is populated by large 
+/// amounts of paperwork and sometimes that turns out to be a little complicated to 
+/// fully understand at a glance. To better communicate how we envision transactions 
+/// in the absence of paper, we've imagined how an autonomous lands registry could handle 
+/// property transfers once the Great Trek to Mars begins 🚀 
+/// In this setting, one can only claim rights to a house if they have been allocated a 
+/// hut by the autonous land registry or through acquisitions from other market participants
+/// through the marketpalce. Inside the "hut", most pleasures enjoyed on earth will come to life. 
+/// However each hut can only be owned by one entity at any point in time. In many ways,
+/// a hut resembles a title deed on earth.Here we examine a standard for transferring ownership 
+/// of properties which could be adopted to facillitate more efficient transfers of properties
+/// without relying on any 3rd parties to mediate the transaction and thereby solving the double 
+/// spending problem in real estate transactions by adopting the ERC721 Standard.
 
 
 contract Ownable {
