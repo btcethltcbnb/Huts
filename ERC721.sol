@@ -23,6 +23,8 @@ contract ERC721 {
     address indexed _operator,
     bool _approved
   );
+  
+  function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 
   function balanceOf(address _owner) public view returns (uint256 _balance);
   function ownerOf(uint256 _tokenId) public view returns (address _owner);
