@@ -92,7 +92,7 @@ contract ERC721 {
 
 contract HutRegistry {
 
-
+using SafeMath for uint2556;
     
     event Construction(address owner, uint256 hutId, uint256 standNumber);
 
