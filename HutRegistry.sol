@@ -6,7 +6,7 @@ import "./ERC721Basic.sol";
 /// @title CreatingaHut.sol. Holds all common structs, events and base variables
 /// for the construction of huts on the blockchain.
 
-contract CreatingaHut {
+contract HutRegistry {
 
     /*** EVENTS ***/
 
