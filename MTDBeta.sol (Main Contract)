@@ -26,22 +26,16 @@ pragma solidity ^0.4.24;
 
 contract Ownable {
   address public owner;
-
-
   
   function Ownable() {
     owner = msg.sender;
   }
-
-
   
   modifier onlyOwner() {
     require(msg.sender == owner);
     _;
   }
-
-
-  
+ 
   function transferOwnership(address newOwner) onlyOwner {
     if (newOwner != address(0)) {
       owner = newOwner;
@@ -51,53 +45,20 @@ contract Ownable {
 }
 
 contract ERC721 {
-  event Transfer(
-    address indexed _from,
-    address indexed _to,
-    uint256 indexed _tokenId
-  );
-  event Approval(
-    address indexed _owner,
-    address indexed _approved,
-    uint256 indexed _tokenId
-  );
-  event ApprovalForAll(
-    address indexed _owner,
-    address indexed _operator,
-    bool _approved
-  );
-  
+    
+    function totalSupply() public view returns (uint256 total);
+    function balanceOf(address _owner) public view returns (uint256 balance);
+    function ownerOf(uint256 _tokenId) external view returns (address owner);
+    function approve(address _to, uint256 _tokenId) external;
+    function transfer(address _to, uint256 _tokenId) external;
+    function transferFrom(address _from, address _to, uint256 _tokenId) external;
+
+    
+    event Transfer(address from, address to, uint256 tokenId);
+    event Approval(address owner, address approved, uint256 tokenId);
+
     function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
-
-  function balanceOf(address _owner) public view returns (uint256 _balance);
-  function ownerOf(uint256 _tokenId) public view returns (address _owner);
-  function exists(uint256 _tokenId) public view returns (bool _exists);
-
-  function approve(address _to, uint256 _tokenId) public;
-  function getApproved(uint256 _tokenId)
-    public view returns (address _operator);
-
-  function setApprovalForAll(address _operator, bool _approved) public;
-  function isApprovedForAll(address _owner, address _operator)
-    public view returns (bool);
-
-  function transferFrom(address _from, address _to, uint256 _tokenId) public;
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId)
-    public;
-
-  function safeTransferFrom(
-    address _from,
-    address _to,
-    uint256 _tokenId,
-    bytes _data
-  )
-    public;
-
-}
-
-
-
 
 contract HutRegistry {
     
@@ -173,8 +134,6 @@ contract HutRegistry {
     }
 
 }
-
-
 
 contract ERC721Metadata {
 
