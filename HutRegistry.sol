@@ -47,7 +47,7 @@ contract HutRegistry {
 
     ///  An array containing the Hut struct for all huts in existence. The ID
     ///  of each hut is actually an index into this array. 
-    Hut [] huts;
+    Hut [] public huts;
 
     ///  A mapping from hut IDs to the address that owns them. All huts have
     ///  some valid owner address.
