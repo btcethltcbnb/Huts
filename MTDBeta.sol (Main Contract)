@@ -76,7 +76,7 @@ contract HutRegistry {
     }
 
  
-    Hut [] huts;
+    Hut [] public huts;
 
     mapping (uint256 => address) public hutIndexToOwner;
     mapping (address => uint256) ownershipTokenCount;
