@@ -108,8 +108,9 @@ contract HutRegistry {
         returns (uint)
         
     {}
-
-        Hut memory _hut = hut({
+          
+        
+        Hut memory _hut = Hut({
             constructionTime: uint64(now),
             standNumber: uint256(_standNumber),
             circumference: string(_circumference),
