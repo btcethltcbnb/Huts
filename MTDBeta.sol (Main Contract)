@@ -5,6 +5,12 @@ pragma solidity ^0.4.24;
 /// fully understand at a glance. To better communicate how we envision transactions 
 /// in the absence of paper, we've imagined how an autonomous lands registry could handle 
 /// property transfers once the Great Trek to Mars begins 🚀 
+/// In this release we are looking for consistency in how title deed transfers are achieved
+/// today, only difference being there is nolonger a large amount of paperwork besides the
+/// primary title deeds kept by the deeds office which corresponds to the digital copy.
+/// Think of it as a perfectly curated gold backed standard dollar, where the digital copy
+/// resembles paper money in circulation and at any point in time can be redeemed for paper
+/// title deeds.
 /// In this setting, one can only claim rights to a house if they have been allocated a 
 /// hut by the autonomous lands registry or through acquisitions from other market participants
 /// through the marketpalce. Once someone owns a hut, by default, they will hold claims on 
