@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.4.19;
 
 /// The process of buying and selling residential real estate is populated by large 
 /// amounts of paperwork and sometimes that turns out to be a little complicated to 
@@ -107,14 +107,14 @@ contract HutRegistry {
         string  _circumference,
         string _country,
         string _bedrooms,
-        string _bathrooms,
+        string _bathrooms
     )
         public
         returns (uint)
         
     {}
 
-        Hut memory _hut = hut({
+        Hut public _hut = hut({
             constructionTime: uint64(now),
             standNumber: uint256(_standNumber),
             circumference: string(_circumference),
