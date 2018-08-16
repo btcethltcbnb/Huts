@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.11;
 
 /// The process of buying and selling residential real estate is populated by large 
 /// amounts of paperwork and sometimes that turns out to be a little complicated to 
@@ -124,22 +124,22 @@ contract HutRegistry {
         });
         uint256 newhutId = huts.push(_hut) - 1;
 
-        Construction(
+        event Construction(
             _owner,
             newhutId,
-            uint256(_hut.standNumber),
+            _hut.standNumber,
             _hut.circumference,
             _hut.country,
             _hut.bedrooms,
             _hut.bathroomms
         );
 
-        _transfer(0, _owner, newhutId);
+       event _transfer( _owner, newhutId);
 
-        return newhutId;
+       
     }
+     
 
-}
 
 contract ERC721Metadata {
 
